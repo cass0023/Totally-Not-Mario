@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+#Jonahs Ignore 
+*.DS_Store
+
 # User-specific files
 *.rsuser
 *.suo
@@ -396,3 +399,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+Assets/.DS_Store
+.DS_Store
+.DS_Store

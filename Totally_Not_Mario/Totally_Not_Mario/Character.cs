@@ -22,27 +22,35 @@ namespace Totally_Not_Mario
 
         public Character()
 		{
-            float timer = 0.0f;
-            int frame = 0;
-            int maxFrames = ((int)(mario.Width / (int)frameWidth));
-            frame = frame % maxFrames;
+           
             mario = Raylib.LoadTexture("../../../../../Assets/mario-sprite-small.png");
             frameWidth = (float)(mario.Width / 5);
-            source = new Rectangle(frameWidth * frame, 0, frameWidth, mario.Height);
+            source = new Rectangle(0, 0, frameWidth, mario.Height);
             position = new Vector2(20, 20);
 
+            //Vector2 marioPosition = (Raylib.GetScreenWidth() / 2, Raylib.GetScreenHeight() / 2);
+            
             
 
-            timer += Raylib.GetFrameTime();
-
-            if(timer >= 0.2f)
-            {
-                timer = 0.0f;
-                frame += 1;
-            }
+        
 
             
         }
+
+
+        public void Move()
+        {
+            float x = 32.0f, y = 32.0f;
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
+            {
+                x += Raylib.GetFrameTime() * 1000.0f;
+            }
+
+
+
+        }
+
 
         public void Render()
         {

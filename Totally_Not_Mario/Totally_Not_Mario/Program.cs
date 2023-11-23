@@ -29,7 +29,7 @@ class Program
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.RAYWHITE);
 
-
+                
                 Update();
 
 
@@ -41,8 +41,8 @@ class Program
 
         static void Setup()
         {
-            
 
+            
   
 
         }
@@ -55,6 +55,38 @@ class Program
 
         }
 
+
+        /*static void DrawGround()
+        {
+
+            int posX = 100;
+            int posY = 600;
+            int sizeX = 1100;
+            int sizeY = 20;
+
+            Raylib.DrawRectangle(posX, posY, sizeX, sizeY, Color.BEIGE);
+
+            float groundLeft = posX;
+            float groundRight = posX + sizeX;
+            float groundTop = posY;
+            float groundBottom = posY + sizeY;
+
+            
+
+
+
+
+        }*/
+
+
+        static void CheckCollison()
+        {
+
+           
+
+
+
+        }
 
 
 

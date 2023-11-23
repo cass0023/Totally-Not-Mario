@@ -19,8 +19,16 @@ namespace Totally_Not_Mario
         int frameIndex;
         bool marioMoving;
         int marioSpeed;
-        int marioJumpSpeed;
 
+        int screenWidth = 1280;
+        int screenHeight = 720;
+        Vector2 size = new Vector2(95, 78);
+
+        float keyboardForce = 5;
+        Vector2 velocity;
+        
+        Vector2 gravityVelocity { get; set; }
+        Vector2 Gravity { get; } = new Vector2(0, 10); // positive Y is downward
 
         public Character()
 		{
@@ -30,7 +38,7 @@ namespace Totally_Not_Mario
             numFrames = 4;
             //displays only part of the sprite 
             frameWidth = mario.Width / numFrames;
-            frameRec = new Rectangle(0, 0, frameWidth, mario.Height);
+            frameRec = new Rectangle(25, 20, 95, 78);
             //where mario is on screen
             position = new Vector2(Raylib.GetScreenWidth() / 2, Raylib.GetScreenHeight() / 2);
             //how fast mario runs
@@ -41,24 +49,39 @@ namespace Totally_Not_Mario
             frameDelayCounter = 0.0f;
             frameIndex = 0;
 
-
+            
         }
 
 
         public void Move()
         {
-            //if right key is pressed down mario moves right
+
+
+            float deltaTime = Raylib.GetFrameTime();
+            float force = keyboardForce * deltaTime; 
+
+
+
+            //if right key is pressed down mario moves right at the speed set
             if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
             {
                 position.X += marioSpeed;
                 marioMoving = true;
             }
-            //if left key is pressed down mario moves left 
+            //if left key is pressed down mario moves left at the speed set 
             else if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
             {
                 position.X -= marioSpeed;
                 marioMoving = true;
+                
             }
+            else if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
+            {
+                position.Y -= force ;
+            }
+
+
+
             //if nothing is pressed mario stays in place
             else
             {
@@ -81,15 +104,85 @@ namespace Totally_Not_Mario
                 
             }
 
+
+
+
+
         }
 
 
         public void Update()
+        { 
+            Move();
+            SimGravity();
+            //PlayerCollison();
+        }
+
+
+
+        public void SimGravity()
         {
 
-            Move();
+            // How much time has elapsed in the last frame
+            float deltaTime = Raylib.GetFrameTime();
+            // Calculate that much time's worth of gravitational force
+            Vector2 gravityForce = deltaTime * Gravity;
+            // Apply force to velocity
+            gravityVelocity += gravityForce;
+            // Apply velocity to position
+            position += gravityVelocity;
+
+
+
+            Vector2 maxPosition = new Vector2 (screenWidth, screenHeight) - size;
+            position = Vector2.Clamp(position, Vector2.Zero, maxPosition);
+
 
         }
+
+
+        public void PlayerCollison()
+        {
+
+            int posX = 100;
+            int posY = 600;
+            int sizeX = 1100;
+            int sizeY = 20;
+
+            Raylib.DrawRectangle(posX, posY, sizeX, sizeY, Color.BEIGE);
+
+            //ground
+            float groundLeft = posX;
+            float groundRight = posX + sizeX;
+            float groundTop = posY;
+            float groundBottom = posY + sizeY;
+
+            //player 
+            float playerLeft = frameRec.X;
+            float playerRight = frameRec.X + frameWidth;
+            float playerTop = position.Y;
+            float playerBottom = position.Y + frameRec.Height;
+
+            bool isPlayerBottom = playerBottom >= groundTop;
+            bool isPlayerTop = playerTop <= groundTop;
+            bool isPlayerLeft = playerLeft >= groundLeft;
+            bool isPlayerRight = playerRight <= groundRight;
+
+            if (isPlayerBottom && isPlayerTop)
+            {
+                //gravityVelocity = new Vector2(gravityVelocity.X, gravityVelocity.Y);
+            }
+
+
+        }
+
+
+
+
+
+
+
+
 
 
 

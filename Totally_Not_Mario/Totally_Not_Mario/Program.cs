@@ -1,6 +1,8 @@
 ﻿//using System.Drawing;
 using System.Numerics;
 using Raylib_cs;
+
+
 namespace Totally_Not_Mario;
 
 class Program
@@ -13,6 +15,7 @@ class Program
         const string title = "Totally Not Mario";
         const int width = 1280;
         const int height = 720;
+        
 
         static void Main(string[] args)
         {
@@ -20,40 +23,14 @@ class Program
             Raylib.SetTargetFPS(60);
 
             Setup();
-            Texture2D mario = Raylib.LoadTexture("../../../../../Assets/mario-sprite.png");
-            int numFrames = 4;
-            int frameWidth = mario.Width / numFrames;
-            Rectangle frameRec = new Rectangle(0, 0, frameWidth, mario.Height);
-            Vector2 position = new Vector2(20, 20);
-
-
-            float frameDelay = 10.0f;
-            float frameDelayCounter = 0.0f;
-            int frameIndex = 0;
-
-            
-            
-
-
 
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.RAYWHITE);
 
-                Raylib.DrawTextureRec(mario, frameRec, position, Color.WHITE);
 
-
-                ++frameDelayCounter;
-                if(frameDelayCounter > frameDelay)
-                {
-                    frameDelayCounter = 0.0f;
-                    ++frameIndex;
-                    frameIndex %= numFrames;
-                    frameRec.X = (float)frameWidth * frameIndex;
-                }
-                
-
+                Update();
 
 
                 Raylib.EndDrawing();
@@ -73,8 +50,7 @@ class Program
 
         static void Update()
         {
-
-            mario.Move();
+            mario.Update();
             mario.Render();
 
         }
@@ -84,3 +60,42 @@ class Program
 
     }
 }
+
+
+/*Raylib.DrawTextureRec(mario, frameRec, position, Color.WHITE);
+
+               
+
+                if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
+                {
+                    marioVelocity.X = marioSpeed;
+                }
+
+                else if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+{
+    marioVelocity.X = -marioSpeed;
+}
+
+else
+{
+    marioVelocity.X = 0;
+}
+
+
+
+
+
+++frameDelayCounter;
+if (frameDelayCounter > frameDelay)
+{
+    frameDelayCounter = 0.0f;
+
+    if (marioMoving)
+    {
+        ++frameIndex;
+        frameIndex %= numFrames;
+        frameRec.X = (float)frameWidth * frameIndex;
+    }
+}
+
+*/

@@ -1,10 +1,14 @@
 ﻿//using System.Drawing;
 using System.Numerics;
 using Raylib_cs;
+
+
 namespace Totally_Not_Mario;
 
 class Program
 {
+    static Character mario = new Character();
+
     internal class Totally_Not_Mario
     {
         const string title = "Totally Not Mario";
@@ -16,29 +20,31 @@ class Program
             Raylib.InitWindow(width, height, title);
             Raylib.SetTargetFPS(60);
 
+            Setup();
+
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.RAYWHITE);
+
+                Update();
+
                 Raylib.EndDrawing();
             }
             Raylib.CloseWindow();
         }
 
-
-        public void Setup()
+        static void Setup()
         {
+
+
 
         }
 
-
-        public void Update()
+        static void Update()
         {
-
+            mario.Update();
+            mario.Render();
         }
-
-
-
-
     }
 }

@@ -1,6 +1,4 @@
 ﻿
-<<<<<<< HEAD
-=======
 using System.Numerics;
 using Raylib_cs;
 
@@ -50,4 +48,4 @@ class Program
         }
     }
 }
->>>>>>> 81cdf005a92a9eae13b43203a8ef2d2b829d9227
+

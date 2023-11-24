@@ -52,6 +52,7 @@ namespace Totally_Not_Mario
             //how fast mario runs
             marioSpeed = 10;
 
+            //changes the speed of the animation
             frameDelay = 2.0f;
             frameDelayCounter = 0.0f;
             frameIndex = 0;
@@ -76,7 +77,6 @@ namespace Totally_Not_Mario
             if (!isOnGround)
             {
                 gravityVelocity = new Vector2(gravityVelocity.X, gravityVelocity.Y);
-
             }
 
             //if right key is pressed down mario moves right at the speed set
@@ -90,7 +90,6 @@ namespace Totally_Not_Mario
             {
                 position.X -= marioSpeed;
                 marioMoving = true;
-
             }
             //if marios not moving the animation stops
             else

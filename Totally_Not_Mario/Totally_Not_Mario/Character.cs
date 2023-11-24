@@ -80,13 +80,13 @@ namespace Totally_Not_Mario
             }
 
             //if right key is pressed down mario moves right at the speed set
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT) || Raylib.IsKeyDown(KeyboardKey.KEY_D))
             {
                 position.X += marioSpeed;
                 marioMoving = true;
             }
             //if left key is pressed down mario moves left at the speed set 
-            else if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+            else if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT) || Raylib.IsKeyDown(KeyboardKey.KEY_A))
             {
                 position.X -= marioSpeed;
                 marioMoving = true;

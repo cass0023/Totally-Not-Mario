@@ -9,8 +9,6 @@ namespace Cass_Level
 {
     internal class Level_Texture
     {
-        static Texture2D groundTexture;
-        static Texture2D brickTexture;
 
         static Texture2D LoadGround2D()
         {

@@ -25,7 +25,7 @@ class Program
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.RAYWHITE);
+                Raylib.ClearBackground(Color.SKYBLUE);
 
                 Update();
 
@@ -36,8 +36,6 @@ class Program
 
         static void Setup()
         {
-
-
 
         }
 

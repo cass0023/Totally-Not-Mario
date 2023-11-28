@@ -32,6 +32,8 @@ namespace Totally_Not_Mario
         //screen dimensions
         int screenWidth = 1280;
         int screenHeight = 720;
+        //screenHeight - groundHeight *need better way to do this
+        int groundHeight = 630;
 
         //gravity
         float friction = 0.2f;
@@ -68,7 +70,7 @@ namespace Totally_Not_Mario
         public void Move()
         {
             //checks if mario is on the ground (which is just the screen rightnow)
-            if (playerBottom == screenHeight)
+            if (playerBottom == groundHeight)
             {
                 isOnGround = true;
             }
@@ -136,7 +138,7 @@ namespace Totally_Not_Mario
             position += gravityVelocity;
 
             //keeps mario within the bounds of the window
-            Vector2 maxPosition = new Vector2(screenWidth, screenHeight) - size;
+            Vector2 maxPosition = new Vector2(screenWidth, groundHeight) - size;
             position = Vector2.Clamp(position, Vector2.Zero, maxPosition);
         }
 
@@ -145,7 +147,7 @@ namespace Totally_Not_Mario
             //finds the bottom of mario
             playerBottom = position.Y + frameRec.Height;
             //checks if mario is greater than the bottom of the screen
-            isPlayerBottom = playerBottom > screenHeight;
+            isPlayerBottom = playerBottom > groundHeight;
 
             //applying friction to mario
             bool applyFriction = isPlayerBottom;

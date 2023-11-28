@@ -31,8 +31,11 @@ namespace Totally_Not_Mario
 
         public void DrawGroundTexture()
         {
-            //draws ground
-            Raylib.DrawTexture(groundLevel, 200, 200, Color.WHITE);
+            //screen dimensions
+            int screenWidth = 1280;
+            int screenHeight = 720;
+            //draws ground 
+            Raylib.DrawTexture(groundLevel, screenWidth * 0, screenHeight - 90, Color.WHITE);
         }
         //public void DrawBrickTexture()
         //{

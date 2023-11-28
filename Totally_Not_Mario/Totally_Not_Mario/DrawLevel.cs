@@ -11,36 +11,31 @@ namespace Totally_Not_Mario
     public class DrawLevel
     {
         public Texture2D groundLevel;
+        public Texture2D brickBlock;
+        //screen dimensions
+        int screenWidth = 1280;
+        int screenHeight = 720;
         //static Texture2D groundTexture = new Texture2D();
         //static Texture2D brickTexture = new Texture2D();
         public void LoadGround2D()
         {
             //loads ground texture to draw
             groundLevel = Raylib.LoadTexture($"../../../../../Assets/mariogroundlevel.png");
-            //Image groundLevel = Raylib.LoadImage($"../../../../../Assets/mariogroundlevel.png");
-            //Texture2D groundTexture = Raylib.LoadTextureFromImage(groundLevel);
-            //return groundTexture;
         }
-        static Texture2D LoadBrick2D()
+        public void LoadBrick2D()
         {
             //loads brick texture for platforms
-            Image brickBlock = Raylib.LoadImage($"../../../../../Assets/mariobrick.png");
-            Texture2D brickTexture = Raylib.LoadTextureFromImage(brickBlock);
-            return brickTexture;
+            brickBlock = Raylib.LoadTexture($"../../../../../Assets/mariobrick.png");
         }
-
         public void DrawGroundTexture()
         {
-            //screen dimensions
-            int screenWidth = 1280;
-            int screenHeight = 720;
             //draws ground 
-            Raylib.DrawTexture(groundLevel, screenWidth * 0, screenHeight - 90, Color.WHITE);
+            Raylib.DrawTexture(groundLevel, screenWidth * 0, screenHeight - 90, Color.LIGHTGRAY);
         }
-        //public void DrawBrickTexture()
-        //{
-        //    //draws brick
-        //    Raylib.DrawTexture(groundLevel, 0, 200, Color.WHITE);
-        //}
+        public void DrawBrickTexture()
+        {
+            //draws brick
+            Raylib.DrawTexture(brickBlock, 200, 200, Color.WHITE);
+        }
     }
 }

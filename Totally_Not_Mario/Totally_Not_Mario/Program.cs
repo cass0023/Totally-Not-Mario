@@ -8,6 +8,7 @@ namespace Totally_Not_Mario;
 class Program
 {
     static Character mario = new Character();
+    static DrawLevel level = new DrawLevel();
 
     internal class Totally_Not_Mario
     {
@@ -36,11 +37,11 @@ class Program
 
         static void Setup()
         {
-
         }
 
         static void Update()
         {
+            level.DrawGroundTexture();
             mario.Update();
             mario.Render();
         }

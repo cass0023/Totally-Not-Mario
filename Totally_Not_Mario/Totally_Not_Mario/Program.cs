@@ -37,13 +37,11 @@ class Program
 
         static void Setup()
         {
-            level.LoadGround2D();
-            level.LoadBrick2D();
+            level.LevelSetup();
         }
         static void Update()
         {
-            level.DrawGroundTexture();
-            level.DrawBrickTexture();
+            level.LevelUpdate();
             mario.Update();
             mario.Render();
         }

@@ -1,7 +1,9 @@
 ﻿using Raylib_cs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,32 +12,46 @@ namespace Totally_Not_Mario
 {
     public class DrawLevel
     {
-        public Texture2D groundLevel;
-        public Texture2D brickBlock;
+        Texture2D groundTexture;
+        Texture2D brickBlock;
+        int groundHeight;
+
         //screen dimensions
         int screenWidth = 1280;
         int screenHeight = 720;
-        //static Texture2D groundTexture = new Texture2D();
-        //static Texture2D brickTexture = new Texture2D();
+       
+        //send to main program
+        public void LevelUpdate()
+        {
+            DrawBrickTexture();
+            DrawGroundTexture();
+        }
+        public void LevelSetup()
+        {
+            LoadBrick2D();
+            LoadGround2D();
+        }
+       
+        // load textures
         public void LoadGround2D()
         {
-            //loads ground texture to draw
-            groundLevel = Raylib.LoadTexture($"../../../../../Assets/mariogroundlevel.png");
+            groundTexture = Raylib.LoadTexture($"../../../../../Assets/mariogroundlevel.png");
+            
+            groundHeight = screenHeight - groundTexture.Height;
         }
         public void LoadBrick2D()
         {
-            //loads brick texture for platforms
             brickBlock = Raylib.LoadTexture($"../../../../../Assets/mariobrick.png");
         }
+        
+        //draw textures
         public void DrawGroundTexture()
         {
-            //draws ground 
-            Raylib.DrawTexture(groundLevel, screenWidth * 0, screenHeight - 90, Color.LIGHTGRAY);
+            Raylib.DrawTexture(groundTexture, screenWidth * 0, screenHeight - 90, Color.LIGHTGRAY);    
         }
         public void DrawBrickTexture()
         {
-            //draws brick
-            Raylib.DrawTexture(brickBlock, 200, 200, Color.WHITE);
+            Raylib.DrawTexture(brickBlock, 200, 200, Color.GRAY);
         }
     }
 }

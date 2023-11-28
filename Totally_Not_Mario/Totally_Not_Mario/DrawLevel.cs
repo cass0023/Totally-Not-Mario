@@ -8,21 +8,23 @@ using System.Threading.Tasks;
 
 namespace Totally_Not_Mario
 {
-    internal class DrawLevel
+    public class DrawLevel
     {
-        static Texture2D groundTexture;
-        static Texture2D brickTexture;
-        static Texture2D LoadGround2D()
+        public Texture2D groundLevel;
+        //static Texture2D groundTexture = new Texture2D();
+        //static Texture2D brickTexture = new Texture2D();
+        public void LoadGround2D()
         {
             //loads ground texture to draw
-            Image groundLevel = Raylib.LoadImage($"../../../../Assets/mariogroundlevel.png/");
-            Texture2D groundTexture = Raylib.LoadTextureFromImage(groundLevel);
-            return groundTexture;
+            groundLevel = Raylib.LoadTexture($"../../../../../Assets/mariogroundlevel.png");
+            //Image groundLevel = Raylib.LoadImage($"../../../../../Assets/mariogroundlevel.png");
+            //Texture2D groundTexture = Raylib.LoadTextureFromImage(groundLevel);
+            //return groundTexture;
         }
         static Texture2D LoadBrick2D()
         {
             //loads brick texture for platforms
-            Image brickBlock = Raylib.LoadImage($"../../../../Assets/mariobrick.png/");
+            Image brickBlock = Raylib.LoadImage($"../../../../../Assets/mariobrick.png");
             Texture2D brickTexture = Raylib.LoadTextureFromImage(brickBlock);
             return brickTexture;
         }
@@ -30,12 +32,12 @@ namespace Totally_Not_Mario
         public void DrawGroundTexture()
         {
             //draws ground
-            Raylib.DrawTexture(groundTexture, 0, 0, Color.WHITE);
+            Raylib.DrawTexture(groundLevel, 200, 200, Color.WHITE);
         }
-        public void DrawBrickTexture()
-        {
-            //draws brick
-            Raylib.DrawTexture(brickTexture, 0, 200, Color.WHITE);
-        }
+        //public void DrawBrickTexture()
+        //{
+        //    //draws brick
+        //    Raylib.DrawTexture(groundLevel, 0, 200, Color.WHITE);
+        //}
     }
 }

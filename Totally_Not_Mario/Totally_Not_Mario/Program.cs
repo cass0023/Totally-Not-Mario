@@ -37,8 +37,8 @@ class Program
 
         static void Setup()
         {
+            level.LoadGround2D();
         }
-
         static void Update()
         {
             level.DrawGroundTexture();

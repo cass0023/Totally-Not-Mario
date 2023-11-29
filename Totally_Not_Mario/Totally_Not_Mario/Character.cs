@@ -51,7 +51,7 @@ namespace Totally_Not_Mario
             frameWidth = mario.Width / numFrames;
             frameRec = new Rectangle(20, 20, 95, 78);
             //where mario is on screen
-            position = new Vector2(Raylib.GetScreenWidth() / 3, Raylib.GetScreenHeight() / 2);
+            position = new Vector2(Raylib.GetScreenWidth() / 2, Raylib.GetScreenHeight() / 2);
             //how fast mario runs
             marioSpeed = 10;
 

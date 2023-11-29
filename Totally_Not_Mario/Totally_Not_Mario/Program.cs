@@ -51,15 +51,19 @@ class Program
         }
         static void Camera2D()
         {
-            float cameraSpeed = 1.0f;
-            camera.Target = mario.position / 1.6f;
-            camera.Offset = new Vector2(Raylib.GetScreenWidth() / 2, Raylib.GetScreenHeight() / 2);
+            float startPoint = screenWidth / 2/3;
+            float cameraSpeed = 1000;
+            camera.Target = mario.position / 1.8f;
+            camera.Offset = new Vector2(Raylib.GetScreenWidth() / 8, Raylib.GetScreenHeight() / 2);
             camera.Rotation = 0.0f;
             camera.Zoom = 1.0f;
-            
-            for (int i = 0; i < 4000; i++)
+
+            if ((Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT) || Raylib.IsKeyDown(KeyboardKey.KEY_D)))
             {
-                mario.cameraLocation = new Vector2(cameraSpeed, Raylib.GetScreenHeight());
+                for (int i = 0; i < screenWidth; i++)
+                {
+                    mario.cameraLocation = new Vector2(startPoint, Raylib.GetScreenHeight()) + new Vector2(cameraSpeed, 0);
+                }
             }
         }
     }

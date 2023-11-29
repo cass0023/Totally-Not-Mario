@@ -14,11 +14,11 @@ namespace Totally_Not_Mario
     {
         Texture2D groundTexture;
         Texture2D brickBlock;
-        int groundHeight;
 
         //screen dimensions
         int screenWidth = 1280;
         int screenHeight = 720;
+        int groundHeight;
        
         //send to main program
         public void LevelUpdate()

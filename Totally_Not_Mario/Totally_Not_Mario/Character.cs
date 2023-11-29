@@ -12,7 +12,8 @@ namespace Totally_Not_Mario
         //texture
         Texture2D mario;
         Rectangle frameRec;
-        Vector2 position;
+        public Vector2 position;
+        public Vector2 cameraLocation;
         int frameWidth;
         Vector2 size = new Vector2(95, 78);
 
@@ -50,7 +51,7 @@ namespace Totally_Not_Mario
             frameWidth = mario.Width / numFrames;
             frameRec = new Rectangle(20, 20, 95, 78);
             //where mario is on screen
-            position = new Vector2(Raylib.GetScreenWidth() / 2, Raylib.GetScreenHeight() / 2);
+            position = new Vector2(Raylib.GetScreenWidth() / 3, Raylib.GetScreenHeight() / 2);
             //how fast mario runs
             marioSpeed = 10;
 
@@ -59,7 +60,10 @@ namespace Totally_Not_Mario
             frameDelayCounter = 0.0f;
             frameIndex = 0;
         }
-
+        public void GetPlayerLocation()
+        {
+            cameraLocation = position;
+        }
         public void Update()
         {
             Move();
@@ -138,7 +142,7 @@ namespace Totally_Not_Mario
             position += gravityVelocity;
 
             //keeps mario within the bounds of the window
-            Vector2 maxPosition = new Vector2(screenWidth, groundHeight) - size;
+            Vector2 maxPosition = new Vector2(4000, groundHeight) - size; //****
             position = Vector2.Clamp(position, Vector2.Zero, maxPosition);
         }
 

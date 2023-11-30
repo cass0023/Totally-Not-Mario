@@ -53,7 +53,7 @@ namespace Totally_Not_Mario
             //where mario is on screen
             position = new Vector2(Raylib.GetScreenWidth() / 2, Raylib.GetScreenHeight() / 2);
             //how fast mario runs
-            marioSpeed = 10;
+            marioSpeed = 8;
 
             //changes the speed of the animation
             frameDelay = 2.0f;

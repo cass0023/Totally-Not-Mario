@@ -2,9 +2,10 @@
 using Raylib_cs;
 using System.Numerics;
 
+namespace Totally_Not_Mario;
 class Program
 {
-  static Character mario = new Character();
+    static Character mario = new Character();
     static DrawLevel level = new DrawLevel();
     static Camera2D camera = new Camera2D();
   
@@ -104,6 +105,7 @@ class Program
             mario.Render();
         }
         
+        //controls player camera
         static void Camera2D()
         {
             float startPoint = screenWidth / 2/3;

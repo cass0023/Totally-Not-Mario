@@ -1,14 +1,19 @@
-﻿using Raylib_cs;
+
+using Raylib_cs;
 using System.Numerics;
 
 class Program
 {
+  static Character mario = new Character();
+    static DrawLevel level = new DrawLevel();
+    static Camera2D camera = new Camera2D();
+  
     internal class Totally_Not_Mario
     {
         
         const string title = "Totally Not Mario";
-        const int width = 1280;
-        const int height = 720;
+        const int screenWidth = 1280;
+        const int screenHeight = 720;
 
         //Goomba properties
         static Texture2D goomba;
@@ -28,25 +33,32 @@ class Program
 
         static void Main(string[] args)
         {
-            Raylib.InitWindow(width, height, title);
+            Raylib.InitWindow(screenWidth, screenHeight, title);
             Raylib.SetTargetFPS(60);
-
-            EnemySetup();   
+          
+          Setup();
 
             while (!Raylib.WindowShouldClose())
             {
-                Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.WHITE);
-
+                Raylib.ClearBackground(Color.SKYBLUE);
+                Raylib.BeginMode2D(camera);
+                
+                Camera2D();
+                Update();
                 Draw();                 
-                UpdateGoombaPosition(); 
-
+                UpdateGoombaPosition();
+               
+                Raylib.EndMode2D();
                 Raylib.EndDrawing();
             }
-
             Raylib.CloseWindow();
         }
 
+            static void Setup()
+        {
+            level.LevelSetup();
+        }                     
+                 
         //Loading Goomba texture
         static void EnemySetup()
         {
@@ -61,7 +73,7 @@ class Program
             //Reset Goomba's position when it goes beyond the window
             if (goombaPosX < resetGoomba)
             {
-                goombaPosX = width; //Resets at the right edge of the window
+                goombaPosX = screenWidth; //Resets at the right edge of the window
             }
         }
 
@@ -85,13 +97,33 @@ class Program
                 sourceRect,new Rectangle(goombaPosX, 250, textureWidth, textureHeight),new Vector2(0, 0),0f,Color.WHITE);
         }
 
-        
-        public void Update()
+        static void Update()
         {
-            
+            level.LevelUpdate();
+            mario.Update();
+            mario.Render();
         }
+        
+        static void Camera2D()
+        {
+            float startPoint = screenWidth / 2/3;
+            float cameraSpeed = 1000;
+            camera.Target = mario.position / 1.8f;
+            camera.Offset = new Vector2(Raylib.GetScreenWidth() / 8, Raylib.GetScreenHeight() / 2);
+            camera.Rotation = 0.0f;
+            camera.Zoom = 1.0f;
 
-        //Loading the texture (from file)
+            if ((Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT) || Raylib.IsKeyDown(KeyboardKey.KEY_D)))
+            {
+                for (int i = 0; i < screenWidth; i++)
+                {
+                    mario.cameraLocation = new Vector2(startPoint, Raylib.GetScreenHeight()) + new Vector2(cameraSpeed, 0);
+                }
+            }
+        }
+            
+       
+        //Loading the goomba texture (from file)
         static Texture2D LoadTexture2D(string fileName)
         {
             Image goomba = Raylib.LoadImage($"../../../resources/goomba/{fileName}");

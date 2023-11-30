@@ -12,8 +12,8 @@ class Program
 
         //Goomba properties
         static Texture2D goomba;
-        static int textureWidth = 100;
-        static int textureHeight = 80;
+        static int textureWidth = 175;
+        static int textureHeight = 145;
 
         //Position of the Goomba outside the window
         static float goombaPosX = 1280 + 100;
@@ -21,10 +21,10 @@ class Program
         //Threshold to reset the Goomba's position
         static float resetGoomba = -textureWidth;
 
-        //Variables for the flipping
+        //Variables for the flipping animation
         static bool flipX = false;       
         static int flipCounter = 0;      //Set at 0 for consistent animation
-        static int flipFrequency = 10;   //Frequency of flipping
+        static int flipFrequency = 10;   
 
         static void Main(string[] args)
         {
@@ -36,7 +36,7 @@ class Program
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.RAYWHITE);
+                Raylib.ClearBackground(Color.WHITE);
 
                 Draw();                 
                 UpdateGoombaPosition(); 
@@ -56,7 +56,7 @@ class Program
         //Update Goomba's position to move left
         static void UpdateGoombaPosition()
         {
-            goombaPosX -= 2;  //Move Goomba horizontally
+            goombaPosX -= 2;  //Move Goomba horizontally (left)
 
             //Reset Goomba's position when it goes beyond the window
             if (goombaPosX < resetGoomba)
@@ -78,16 +78,11 @@ class Program
             }
 
             
-            Rectangle sourceRect = flipX ? new Rectangle(goomba.Width, 0, -goomba.Width, goomba.Height) :
-                                           new Rectangle(0, 0, goomba.Width, goomba.Height);
+            Rectangle sourceRect = flipX ? new Rectangle(goomba.Width, 0, -goomba.Width, goomba.Height) : new Rectangle(0, 0, goomba.Width, goomba.Height);
 
-            // Draw Goomba at the updated X position (with flipping)
+            //Draw Goomba at the updated X position (with flipping)
             Raylib.DrawTexturePro(goomba,
-                sourceRect,
-                new Rectangle(goombaPosX, 100, textureWidth, textureHeight),
-                new Vector2(0, 0),
-                0f,
-                Color.WHITE);
+                sourceRect,new Rectangle(goombaPosX, 250, textureWidth, textureHeight),new Vector2(0, 0),0f,Color.WHITE);
         }
 
         
@@ -96,11 +91,11 @@ class Program
             
         }
 
-        // Loading the texture (from file)
+        //Loading the texture (from file)
         static Texture2D LoadTexture2D(string fileName)
         {
-            Image image = Raylib.LoadImage($"../../../resources/goomba/{fileName}");
-            Texture2D texture = Raylib.LoadTextureFromImage(image);
+            Image goomba = Raylib.LoadImage($"../../../resources/goomba/{fileName}");
+            Texture2D texture = Raylib.LoadTextureFromImage(goomba);
             return texture;
         }
     }
